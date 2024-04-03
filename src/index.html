@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/main.ts" type="module"></script>
+    <title>To Do List</title>
+</head>
+<body>
+
+    <h1>Att göra lista:</h1>  
+
+    <form id="todoform"><!-- formulär att fylla i uppgifter att göra -->
+        <label for="task">Att göra: </label>
+        <input type="text" id="task" required>
+
+        <label for="prio">Prioritet (1 - 3): </label>
+        <input type="number" id="prio" min="1" max="3" required>
+
+        <button type="submit">Lägg till uppgift</button><!-- lägg till knapp -->
+
+    </form>
+
+    
+    <ul id="todoullist"></ul><!-- unordered list att skriva ut uppgifterna i -->
+    <button id="completedtask">Markera som klar</button><!-- knapp för att markera uppgift som klar -->
+    
+</body>
+</html>
