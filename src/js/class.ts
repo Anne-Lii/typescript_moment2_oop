@@ -1,12 +1,12 @@
-//interface för en todo-uppgift
-interface ToDo {
+//interface för en todo-uppgift och exportera denna
+export interface ToDo {
     task: string;
     completed: boolean;
     priority: number;
 }
 
-//implementering av ToDoList klassen
-class ToDoList {
+//implementering av ToDoList klassen och exportera denna
+export class ToDoList {
 
     //array med todos
     todos: ToDo[] = [];
