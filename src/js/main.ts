@@ -25,9 +25,17 @@ document.addEventListener("DOMContentLoaded", () => {
         todos.forEach((todo, index) => {
             const todoItem = document.createElement("li");
 
+            //skapar en container till uppgifterna
+            const todoContainer = document.createElement("div");
+            todoContainer.classList.add("taskcontainer");
+
+            //skapar en container till tabortknapp och markera som klar knapp
+            const btnContainer = document.createElement("div");
+            btnContainer.classList.add("buttoncontainer");
+
             //skapa en knapp till varje uppgift för att bocka av som avklarad
             const completeBtn = document.createElement("button");
-            completeBtn.innerText = "Markera som avklarad";
+            completeBtn.innerText = "Markera som klar";
             completeBtn.setAttribute("data-index", index.toString());//sätter ett data-attribut för att ha koll på index
             
             //event vid klick på knappen avklarad uppgift
@@ -58,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             //vad som ska stå i li-elementet samt symbol grön bock
             todoItem.innerHTML = `
-                ${todo.completed ? `<span class="completed-task">&#10004; </span>${todo.task}` : todo.task} (Prioritet: ${todo.priority})
+                ${todo.completed ? `<span class="completed-task">&#10004; </span><s>${todo.task}` : todo.task}</s> (Prio: ${todo.priority})
                 `;
 
             //lägg till klassen completed till uppgiften om complete===true   
@@ -67,6 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             //skriv ut till DOM
+            todoItem.appendChild(todoContainer);
+            todoItem.appendChild(btnContainer);
             todoItem.appendChild(completeBtn);
             todoItem.appendChild(removeBtn);
             todoullistEl?.appendChild(todoItem);

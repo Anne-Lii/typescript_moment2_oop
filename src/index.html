@@ -9,23 +9,36 @@
 </head>
 <body>
 
-    <h1>Att göra lista:</h1>  
+    <div id="container">
+        <div id="liner">
+            <h1>Att göra lista:</h1>  
 
-    <form id="todoform"><!-- formulär att fylla i uppgifter att göra -->
-        <label for="task">Att göra: </label>
-        <input type="text" id="task" required>
-
-        <label for="prio">Prioritet (1 - 3): </label>
-        <input type="number" id="prio" min="1" max="3" required>
-
-        <button type="submit">Lägg till uppgift</button><!-- lägg till knapp -->
-
-    </form>
-
+            <form id="todoform"><!-- formulär att fylla i uppgifter att göra -->
+                <label for="task">Ny uppgift: </label><br>
+                <input type="text" id="task" required>
+                <br>
+                <label for="prio">Prioritet (1 - 3): </label><br>
+                <input type="number" id="prio" min="1" max="3" required>
+                <br>
+                <button type="submit" id="addbutton">Lägg till uppgift</button><!-- lägg till knapp -->
     
-    <ul id="todoullist"></ul><!-- unordered list att skriva ut uppgifterna i -->
-   
-    <button id="clearlist">Rensa lista</button>
+            </form>
+    
+            
+            <ul id="todoullist"></ul><!-- unordered list att skriva ut uppgifterna i -->
+        
+            <button id="clearlist">Rensa lista</button>
+        </div>
+
+       
+   </div>
+
+    <footer>
+        Anne-Lii Hansen<br>
+        anha2324@student.miun.se<br>
+        Bakgrundsbild av: <a href="https://pixabay.com/sv/users/kytalpa-1113491/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=2072271">kytalpa</a> från <a href="https://pixabay.com/sv//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=2072271">Pixabay</a>
+    </footer>
     
 </body>
+
 </html>
