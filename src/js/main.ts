@@ -29,7 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const completeBtn = document.createElement("button");
             completeBtn.innerText = "Markera som avklarad";
             completeBtn.setAttribute("data-index", index.toString());//sätter ett data-attribut för att ha koll på index
-
+            
+            //event vid klick på knappen avklarad uppgift
             completeBtn.addEventListener("click", (event) => {            
                 const dataIndex = (event.target as HTMLButtonElement).getAttribute("data-index");
                 if(dataIndex!== null) {
@@ -39,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
             });
-
+            //vad som ska stå i li-elementet samt symbol grön bock
             todoItem.innerHTML = `
                 ${todo.completed ? `<span class="completed-task">&#10004; </span>${todo.task}` : todo.task} (Prioritet: ${todo.priority})
                 `;
@@ -66,14 +67,26 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
 
         const task = (document.getElementById("task") as HTMLInputElement).value;
-        const priority = parseInt((document.getElementById("prio") as HTMLInputElement).value, 10);
+        const priority = parseInt((document.getElementById("prio") as HTMLInputElement).value, 10);//hämtar värdet i inputfältet id=prio och konverterar till ett helttal
 
         if (todoList.addToDo(task, priority)) {
             showTasks();
-            (document.getElementById("todoform") as HTMLFormElement).reset();
+            (document.getElementById("todoform") as HTMLFormElement).reset();//reset av formulär
         } else {
-            alert("vänligen fyll i alla fält korrekt");
+            alert("vänligen fyll i alla fält korrekt");//varning om allt inte fylls i korrekt
         }
+    });
+
+    //event vid klick på knappen rensa lista
+    const clearBtn = document.getElementById("clearlist");
+    clearBtn?.addEventListener("click", ()=> {
+
+        if(confirm("Är du säker på att du vill rensa listan?")) {
+            todoList.todos = []; //tömmer listan
+            todoList.saveToLocalStorage();//sparar den rensade listan i localstorage
+            showTasks();//uppdaterar DOM
+        }
+    
     });
 
     //uppdaterar todos vid sidladdning
