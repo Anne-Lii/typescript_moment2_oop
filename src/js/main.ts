@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             });
 
-            //skapa ett kryss som man kan ta bort uppgifter med
+            //skapa en knapp som man kan ta bort uppgifter med
             const removeBtn = document.createElement("button");
             removeBtn.innerText = "Ta bort";
             removeBtn.setAttribute("data-index", index.toString());
