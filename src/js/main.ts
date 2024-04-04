@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             //vad som ska stå i li-elementet samt symbol grön bock
             todoItem.innerHTML = `
-                ${todo.completed ? `<span class="completed-task">&#10004; </span><s>${todo.task}` : todo.task}</s> (Prio: ${todo.priority})
+                ${todo.completed ? `<span class="completed-task">&#10004; </span><s>${todo.task}` : todo.task}</s>
                 `;
 
             //lägg till klassen completed till uppgiften om complete===true   
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
     todoformEl?.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        const task = (document.getElementById("task") as HTMLInputElement).value;
+        const task = (document.getElementById("task") as HTMLTextAreaElement).value;
         const priority = parseInt((document.getElementById("prio") as HTMLInputElement).value, 10);//hämtar värdet i inputfältet id=prio och konverterar till ett helttal
 
         if (todoList.addToDo(task, priority)) {
