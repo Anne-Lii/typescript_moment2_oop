@@ -62,6 +62,14 @@ export class ToDoList {
             this.todos = JSON.parse(savedToDos);
         }
     }
+
+    //metod för att ta bort en uppgift
+    removeTodo(index:number): void {
+        if (index>= 0 &&index<this.todos.length) {
+            this.todos.splice(index, 1);//tar bort ett element från index
+            this.saveToLocalStorage();//uppdaterar localstorage
+        }
+    }
 }
 
 

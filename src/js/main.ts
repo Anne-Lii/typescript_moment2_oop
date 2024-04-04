@@ -40,6 +40,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
             });
+
+            //skapa ett kryss som man kan ta bort uppgifter med
+            const removeBtn = document.createElement("button");
+            removeBtn.innerText = "Ta bort";
+            removeBtn.setAttribute("data-index", index.toString());
+
+            //even som tar bort uppgift vid klick på krysset
+            removeBtn.addEventListener("click", (event) => {
+                const dataIndex = (event.target as HTMLButtonElement).getAttribute("data-index");
+                if(dataIndex!== null) {
+                    const index = parseInt(dataIndex, 10);
+                    todoList.removeTodo(index);
+                    showTasks();
+                }
+            });
+
             //vad som ska stå i li-elementet samt symbol grön bock
             todoItem.innerHTML = `
                 ${todo.completed ? `<span class="completed-task">&#10004; </span>${todo.task}` : todo.task} (Prioritet: ${todo.priority})
@@ -52,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             //skriv ut till DOM
             todoItem.appendChild(completeBtn);
+            todoItem.appendChild(removeBtn);
             todoullistEl?.appendChild(todoItem);
 
         });
