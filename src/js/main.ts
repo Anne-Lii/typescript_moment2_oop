@@ -13,25 +13,41 @@ document.addEventListener("DOMContentLoaded", () => {
         //hämta listelementet från HTML koden och rensa listan från eventuella uppgifter
         const todoullistEl = document.getElementById("todoullist");
         if (todoullistEl) {
-            todoullistEl.innerHTML = "";
+            todoullistEl.innerHTML = "";//rensar listan
         }
 
+        const todos = todoList.getTodos();
+
+        //sortera listan enligt prioritering 1 viktigast (högst upp)
+        todos.sort((a,b)=> a.priority - b.priority);
+
         //loopa igenom todos och skapa <li> element
-        todoList.getTodos().forEach((todo, index) => {
+        todos.forEach((todo, index) => {
             const todoItem = document.createElement("li");
 
             //skapa en knapp till varje uppgift för att bocka av som avklarad
             const completeBtn = document.createElement("button");
             completeBtn.innerText = "Markera som avklarad";
-            completeBtn.addEventListener("click", () => {
-                todoList.markTodoCompleted(index);
-                showTasks(); //uppdaterar listan efter att ha markerat en uppgift som avklarad
+            completeBtn.setAttribute("data-index", index.toString());//sätter ett data-attribut för att ha koll på index
+
+            completeBtn.addEventListener("click", (event) => {            
+                const dataIndex = (event.target as HTMLButtonElement).getAttribute("data-index");
+                if(dataIndex!== null) {
+                    const index = parseInt(dataIndex,10);
+                    todoList.markTodoCompleted(index);
+                    showTasks(); //uppdaterar listan efter att ha markerat en uppgift som avklarad
+                }
 
             });
 
             todoItem.innerHTML = `
-        ${todo.task} (Prioritet: ${todo.priority})
-        `;
+                ${todo.completed ? `<span class="completed-task">&#10004; </span>${todo.task}` : todo.task} (Prioritet: ${todo.priority})
+                `;
+
+            //lägg till klassen completed till uppgiften om complete===true   
+            if(todo.completed) {
+                todoItem.classList.add("completed");
+            }
 
             //skriv ut till DOM
             todoItem.appendChild(completeBtn);
